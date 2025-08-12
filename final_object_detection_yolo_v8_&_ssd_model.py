@@ -10,7 +10,7 @@ Original file is located at
 from google.colab import drive
 drive.mount('/content/drive')
 
-pip install ultralytics scikit-learn matplotlib seaborn
+# pip install ultralytics scikit-learn matplotlib seaborn
 
 from ultralytics import YOLO
 
@@ -322,7 +322,7 @@ bh.remove()
 
 print("Done. All Grad-CAM images saved and displayed.")
 
-!pip install ultralytics opencv-python-headless matplotlib
+# !pip install ultralytics opencv-python-headless matplotlib
 
 import cv2
 import torch
@@ -424,7 +424,7 @@ cv2_imshow(frame)
 
 """#SSD"""
 
-!pip install torch torchvision matplotlib seaborn scikit-learn --quiet
+# !pip install torch torchvision matplotlib seaborn scikit-learn --quiet
 
 import torch
 from torch.utils.data import Dataset, DataLoader
