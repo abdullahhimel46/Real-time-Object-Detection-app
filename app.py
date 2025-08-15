@@ -75,7 +75,11 @@ def index():
         if file:
             # Save the uploaded image to a temporary location
             image_path = "/tmp/static/uploaded_image.jpg"
+            upload_dir = "/tmp/static"
+            os.makedirs(upload_dir, exist_ok=True)  # Ensure directory exists
+            image_path = os.path.join(upload_dir, "uploaded_image.jpg")
             file.save(image_path)
+
 
             # Run inference on the uploaded image
             results = model(image_path)  # results list
@@ -110,8 +114,8 @@ def generate_live_frames():
         cap = cv2.VideoCapture(camera_index)
         if cap.isOpened():
             print(f"Camera found at index {camera_index}")
+            cap.release()
             break
-        cap.release()
     
     if not cap or not cap.isOpened():
         print("No camera found!")
@@ -140,6 +144,10 @@ def generate_live_frames():
 
 if __name__ == '__main__':
     #app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, port=port, host='0.0.0.0', threaded=True)
+
     app.run(debug=False, port=5000, host='0.0.0.0', threaded = True)
+
 
 
