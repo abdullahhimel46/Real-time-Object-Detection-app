@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯🔬 SMART OBJECT DETECTION SYSTEM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            padding: 40px;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .card h3 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .card p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .upload-area {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            background: #f8f9ff;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area:hover {
+            border-color: #764ba2;
+            background: #f0f0ff;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .upload-text {
+            color: #667eea;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .upload-subtext {
+            color: #999;
+            font-size: 0.9em;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-red {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+        }
+        
+        .results-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .results-title {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .result-image {
+            max-width: 600px;
+            max-height: 500px;
+            width: auto;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            display: block;
+            object-fit: contain;
+        }
+        
+        .error-message {
+            color: #ff6b6b;
+            background: #ffe6e6;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔬 SMART OBJECT DETECTION SYSTEM</h1>
+            <p>AI-POWERED SMART OBJECT DETECTION SYSTEM USING DEEP LEARNING</p>
+        </div>
+        
+        <div class="main-content">
+            <div class="cards-container">
+                <!-- Image Detection Card -->
+                <div class="card">
+                    <div class="card-icon">📷</div>
+                    <h3>Image Detection</h3>
+                    <p>Upload an image to detect and identify objects with high accuracy using YOLOv8 technology</p>
+                    
+                    <form action="/imgpred" method="post" enctype="multipart/form-data">
+                        <div class="upload-area" onclick="document.getElementById('imageInput').click()">
+                            <div class="upload-text">📤 Choose Image File</div>
+                            <div class="upload-subtext">Drag and drop or click to select</div>
+                            <input type="file" name="image" id="imageInput" accept="image/*" required>
+                        </div>
+                        <button type="submit" class="btn">🔍 Analyze Image</button>
+                    </form>
+                </div>
+                
+                <!-- Video Detection Card -->
+                <div class="card">
+                    <div class="card-icon">🎥</div>
+                    <h3>Video Detection</h3>
+                    <p>Upload a video file to detect objects frame by frame and download the processed results</p>
+                    
+                    <form action="/vidpred" method="post" enctype="multipart/form-data">
+                        <div class="upload-area" onclick="document.getElementById('videoInput').click()">
+                            <div class="upload-text">📤 Choose Video File</div>
+                            <div class="upload-subtext">Drag and drop or click to select</div>
+                            <input type="file" name="file" id="videoInput" accept="video/*" required>
+                        </div>
+                        <button type="submit" class="btn">🎬 Process Video</button>
+                    </form>
+                </div>
+                
+                <!-- Live Camera Card -->
+                <div class="card">
+                    <div class="card-icon">📹</div>
+                    <h3>Live Camera</h3>
+                    <p>Start real-time object detection using your camera with instant analysis</p>
+                    
+                    <div style="padding-top: 50px;">
+                        <button onclick="window.open('/live_feed', '_blank')" class="btn btn-red">🔴 Start Live Detection</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results Section -->
+            {% if image_path %}
+            <div class="results-section">
+                <h2 class="results-title">🎯 Detection Results</h2>
+                <img src="{{ url_for('static', filename='result_image.jpg') }}" alt="Detection Result" class="result-image">
+            </div>
+            {% endif %}
+            
+            {% if error %}
+            <div class="error-message">
+                <strong>⚠️ Error:</strong> {{ error }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <script>
+        // File upload handling
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const fileName = e.target.files[0].name;
+                e.target.parentElement.querySelector('.upload-text').textContent = `📁 ${fileName}`;
+                e.target.parentElement.querySelector('.upload-subtext').textContent = 'File selected - ready to analyze';
+            }
+        });
+        
+        document.getElementById('videoInput').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const fileName = e.target.files[0].name;
+                e.target.parentElement.querySelector('.upload-text').textContent = `📁 ${fileName}`;
+                e.target.parentElement.querySelector('.upload-subtext').textContent = 'File selected - ready to process';
+            }
+        });
+    </script>
+</body>
+</html>
