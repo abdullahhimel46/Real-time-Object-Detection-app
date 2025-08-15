@@ -7,7 +7,7 @@ from PIL import Image
 app = Flask(__name__)
 
 # Load the YOLOv8 model
-model = YOLO('best.pt')
+model = YOLO('yolov8n.pt')
 
 @app.route('/')
 def home():
@@ -141,3 +141,4 @@ def generate_live_frames():
 if __name__ == '__main__':
     #app.run(debug=True)
     app.run(debug=False, port=5000, host='0.0.0.0', threaded = True)
+
