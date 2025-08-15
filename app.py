@@ -74,7 +74,7 @@ def index():
 
         if file:
             # Save the uploaded image to a temporary location
-            image_path = "static/uploaded_image.jpg"
+            image_path = "/tmp/static/uploaded_image.jpg"
             file.save(image_path)
 
             # Run inference on the uploaded image
@@ -87,7 +87,7 @@ def index():
                 im_rgb = Image.fromarray(im_bgr[..., ::-1])  # RGB-order PIL image
 
                 # Save the result image
-                result_image_path = "static/result_image.jpg"
+                result_image_path = "/tmp/static/result_image.jpg"
                 im_rgb.save(result_image_path)
 
             # Remove the uploaded image
@@ -141,4 +141,5 @@ def generate_live_frames():
 if __name__ == '__main__':
     #app.run(debug=True)
     app.run(debug=False, port=5000, host='0.0.0.0', threaded = True)
+
 
