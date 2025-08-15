@@ -81,8 +81,14 @@ def index():
             file.save(image_path)
 
 
-            # Run inference on the uploaded image
-            results = model(image_path)  # results list
+            # Resize the image before inference
+            img = Image.open(image_path)
+            img = img.resize((400, 300))  # Resize to reduce memory usage
+            img.save(image_path)
+            
+            # Run inference using YOLOv8 with stream=False
+            results = model.predict(image_path, stream=False)
+
 
             # Visualize the results
             for i, r in enumerate(results):
@@ -148,6 +154,7 @@ if __name__ == '__main__':
     app.run(debug=False, port=port, host='0.0.0.0', threaded=True)
 
     app.run(debug=False, port=5000, host='0.0.0.0', threaded = True)
+
 
 
 
